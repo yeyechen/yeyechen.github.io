@@ -4,23 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>yeyechen</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="yeyechen — personal site">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/geist-mono-regular.woff2" as="font" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Geist Mono';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/geist-mono-regular.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Geist Mono';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/geist-mono-bold.woff2') format('woff2');
+      font-weight: 700;
+    }
+
+    :root {
+      --bg: #f0f0f0;
+      --fg: #1a1a1a;
+      --green: #10b981;
+      --green-dim: #059669;
+      --cyan: #0891b2;
+      --cyan-dim: #0e7490;
+      --surface: #ffffff;
+      --border: #d4d4d8;
+      --muted: #71717a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Geist Mono', 'Courier New', monospace;
+      min-height: 100vh;
+    }
+
+    ::selection { background: var(--green); color: white; }
+
+    /* Terminal window */
+    .terminal {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid #222;
+      gap: 8px;
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.red { background: #ff5f56; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #27c93f; }
+    .terminal-title {
+      color: #666;
+      font-size: 10px;
+      margin-left: 8px;
+    }
+    .terminal-body {
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #e0e0e0;
+    }
+
+    /* Cursor blink */
+    .cursor::after {
+      content: '\2588';
+      color: #34d399;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Pulse dot */
+    .pulse {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1.5rem;
+      max-width: 80rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+      .page { height: 100vh; overflow: hidden; }
+      .container {
+        flex-direction: row;
+        gap: 3rem;
+        padding: 3rem;
+        align-items: center;
+      }
+    }
+
+    .hero { flex: 1; min-width: 0; }
+    .sidebar { width: 100%; }
+    @media (min-width: 1024px) { .sidebar { width: 18rem; flex-shrink: 0; } }
+
+    /* Typography */
+    .section-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+    }
+    .muted { color: var(--muted); }
+    .cyan-link { color: var(--cyan); text-decoration: underline; }
+    .cyan-link:hover { color: var(--cyan-dim); }
+  </style>
 </head>
-<body class="bg-zinc-950 text-zinc-300 min-h-screen flex items-center justify-center font-mono">
-  <main class="max-w-xl px-6 py-16">
-    <h1 class="text-white text-2xl mb-6">yeyechen</h1>
-    <p class="mb-8 text-zinc-400">
-      Welcome. This is my corner of the internet.
-    </p>
+<body>
+  <div class="page">
+    <div class="container">
 
-    <div class="border border-zinc-800 rounded-lg p-5 bg-zinc-900/50 mb-8">
-      <p class="text-zinc-500 text-sm mb-1">$ whoami</p>
-      <p class="text-green-400">student, builder, learner</p>
+      <!-- LEFT COLUMN: Hero -->
+      <div class="hero">
+        <!-- Online indicator -->
+        <div class="section-label" style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+          <span class="pulse"></span> online
+        </div>
+
+        <h1 style="font-size:2rem;font-weight:700;margin-bottom:0.5rem;">
+          yeyechen
+        </h1>
+
+        <p class="muted" style="font-size:0.8125rem;line-height:1.6;max-width:32rem;">
+          Hello. I'm yeyechen — student, builder, learner.
+          This is my corner of the internet.
+        </p>
+
+        <!-- Capabilities -->
+        <div style="margin-top:1.5rem;">
+          <div class="section-label">what i do</div>
+          <ul class="muted" style="font-size:0.75rem;line-height:1.7;list-style:none;">
+            <li>Study math &amp; computer science</li>
+            <li>Build things and learn in public</li>
+            <li>Write notes, solve problems, explore ideas</li>
+          </ul>
+        </div>
+
+        <!-- Terminal -->
+        <div class="terminal" style="margin-top:1.25rem;">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">yeyechen@github ~ boot</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div style="color:#666;">$ ssh yeyechen@github.io</div>
+            <div style="color:#666;">connecting...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Sidebar -->
+      <div class="sidebar">
+        <!-- me -->
+        <div style="margin-bottom:1rem;">
+          <div class="section-label">me</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem 1rem;">
+            <a href="https://github.com/yeyechen" class="cyan-link" style="font-size:0.75rem;">github</a>
+          </div>
+        </div>
+
+        <!-- links -->
+        <div style="padding-top:0.75rem;border-top:1px solid var(--border);">
+          <div class="section-label">links</div>
+          <div style="display:flex;flex-direction:column;gap:0.25rem;">
+            <a href="https://yeyechen.github.io" class="cyan-link" style="font-size:0.75rem;">yeyechen.github.io</a>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <nav class="flex gap-6 text-sm">
-      <a href="https://github.com/yeyechen" class="text-zinc-400 hover:text-white transition-colors">github</a>
-    </nav>
-  </main>
+  <script>
+    // Terminal boot sequence
+    const lines = [
+      { text: 'host:     yeyechen.github.io', delay: 500, color: '#22d3ee' },
+      { text: 'status:   online', delay: 700, color: '#34d399' },
+      { text: 'deployed via GitHub Pages', delay: 900, color: '#e0e0e0' },
+    ];
+
+    const terminal = document.getElementById('terminal-body');
+
+    lines.forEach((line, i) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.textContent = line.text;
+        div.style.color = line.color || '#e0e0e0';
+        terminal.appendChild(div);
+
+        if (i === lines.length - 1) {
+          setTimeout(() => {
+            const cursor = document.createElement('div');
+            cursor.className = 'cursor';
+            cursor.textContent = '$ ';
+            cursor.style.marginTop = '6px';
+            cursor.style.color = '#666';
+            terminal.appendChild(cursor);
+          }, 300);
+        }
+      }, line.delay);
+    });
+  </script>
 </body>
 </html>
