@@ -1,0 +1,16 @@
+primary_name: "Yeye Chen"
+secondary_name: ""
+navbar_name: "Yeye Chen"
+
+positions:
+- name: Research Assistant
+- name: University of Hong Kong
+
+github: yeyechen
+linkedin: yeyechen
+
+short_bio_text_justify: false
+short_bio: >-
+  <p>Trying to be a cool person.</p>
+
+portrait_url: /assets/images/photos/portrait.jpg

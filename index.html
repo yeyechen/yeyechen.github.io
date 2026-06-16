@@ -1,196 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>yeyechen</title>
-  <meta name="description" content="yeyechen — personal site">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <style>
-    @font-face {
-      font-family: 'Geist Mono';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-mono/GeistMono-Regular.woff2') format('woff2');
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: 'Geist Mono';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-mono/GeistMono-SemiBold.woff2') format('woff2');
-      font-weight: 700;
-    }
+---
+layout: default
+title : Homepage
+navbar_title: Home
+---
 
-    :root {
-      --bg: #1a1a1a;
-      --fg: #e0e0e0;
-      --green: #10b981;
-      --green-dim: #34d399;
-      --cyan: #22d3ee;
-      --cyan-dim: #67e8f9;
-      --surface: #262626;
-      --border: #3f3f46;
-      --muted: #a1a1aa;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Geist Mono', 'Courier New', monospace;
-      min-height: 100vh;
-    }
-
-    ::selection { background: var(--green); color: white; }
-
-
-    /* Layout */
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 1.5rem;
-      max-width: 88rem;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      .page { height: 100vh; overflow: hidden; }
-      .container {
-        flex-direction: row;
-        gap: 4rem;
-        padding: 3rem;
-        align-items: center;
-      }
-    }
-
-    /* Left column — narrow, profile */
-    .hero {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    @media (min-width: 1024px) {
-      .hero {
-        width: 20rem;
-        flex-shrink: 0;
-        justify-content: center;
-      }
-    }
-
-    /* Profile image */
-    .profile-img {
-      width: 100%;
-      margin-top: 1rem;
-      object-fit: cover;
-      object-position: center 30%;
-      border-radius: 4px;
-      display: block;
-      max-height: 22rem;
-    }
-    @media (min-width: 1024px) {
-      .profile-img {
-        max-height: none;
-        height: 26rem;
-      }
-    }
-
-    /* Right column — content */
-    .sidebar {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    @media (min-width: 1024px) {
-      .sidebar { justify-content: center; }
-    }
-
-    /* Typography */
-    .section-label {
-      font-size: 10px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 6px;
-    }
-    .muted { color: var(--muted); }
-    .cyan-link { color: var(--cyan); text-decoration: underline; }
-    .cyan-link:hover { color: var(--cyan-dim); }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="container">
-
-      <!-- LEFT COLUMN: Profile -->
-      <div class="hero">
-        <h1 style="font-size:2rem;font-weight:700;">
-          Yeye Chen
-        </h1>
-
-        <!-- Social links -->
-        <div style="display:flex;flex-wrap:wrap;gap:0.5rem 1rem;margin-top:0.5rem;">
-          <a href="https://github.com/yeyechen" class="cyan-link" style="font-size:0.75rem;">github</a>
-          <a href="https://www.linkedin.com/in/yeyechen/" class="cyan-link" style="font-size:0.75rem;">linkedin</a>
-        </div>
-
-        <!-- Profile image -->
-        <img src="assets/homepage.jpg" alt="yeyechen" class="profile-img">
-
-      </div>
-
-      <!-- RIGHT COLUMN: Content -->
-      <div class="sidebar">
-
-        <!-- About -->
-        <div>
-          <div class="section-label">about</div>
-          <p id="about-text" class="muted" style="font-size:0.8125rem;line-height:1.7;max-width:36rem;"></p>
-        </div>
-
-        <!-- What I do -->
-        <div>
-          <div class="section-label">what i do</div>
-          <ul id="whatido-list" class="muted" style="font-size:0.75rem;line-height:1.9;list-style:none;"></ul>
-        </div>
-
-
-        <!-- Links -->
-        <div>
-          <div class="section-label">links</div>
-          <div style="display:flex;flex-direction:column;gap:0.25rem;">
-            <a href="https://yeyechen.github.io" class="cyan-link" style="font-size:0.75rem;">yeyechen.github.io</a>
-          </div>
-        </div>
-
-      </div>
-
+<div class="row">
+    <div class="col-lg-3 col-md-4">
+        {% include widgets/profile_card_mini.html %}
     </div>
-  </div>
+    <div class="col-lg-9 col-md-8">
 
-  <script>
-    fetch('content/about.txt')
-      .then(r => r.text())
-      .then(text => { document.getElementById('about-text').textContent = text.trim(); });
+        {% include widgets/profile_card_bio_only.html %}
 
-    fetch('content/whatido.txt')
-      .then(r => r.text())
-      .then(text => {
-        const list = document.getElementById('whatido-list');
-        text.trim().split('\n').forEach(line => {
-          const li = document.createElement('li');
-          li.textContent = line.trim();
-          list.appendChild(li);
-        });
-      });
+        <!-- Debugging widgets -->
+        {% include widgets/debug_repo_name.html %}
+        {% include widgets/debug_url.html %}
 
-  </script>
-</body>
-</html>
+        {% if site.data.display.homepage.show_experience %}
+            {% include widgets/experience_card.html %}
+        {% endif %}
+
+        {% if site.data.display.homepage.show_news %}
+        {% assign count_news = site.news | size %}
+        {% if count_news > 0 %}
+        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+        {% endif %}
+        {% endif %}
+
+        {% if site.data.display.homepage.show_selected_publications %}
+        {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+        {%
+        include widgets/publication_card.html
+        publications=pubs
+        title='<i class="fas fa-star"></i> Selected Publications'
+        %}
+        {% endif %}
+    </div>
+</div>
