@@ -1,0 +1,28 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h6>Study Journey</h6>
+                {% for item in site.data.education %}
+                <div class="d-flex align-items-start {% unless forloop.last %}border-bottom border-gray{% endunless %} py-3">
+                    <img
+                        src="{{ item.logo | relative_url }}"
+                        alt="{{ item.name }}"
+                        style="width: 48px; height: 48px; object-fit: contain; flex-shrink: 0;"
+                        class="mr-3 mt-1">
+                    <div style="flex: 1; min-width: 0;">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <strong>{{ item.name }}</strong>
+                            <span class="text-muted small no-break ml-3"><em>{{ item.date }}</em></span>
+                        </div>
+                        <div class="small text-muted">{{ item.position }}</div>
+                        {% if item.description %}
+                        <div class="small mt-1">{{ item.description }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

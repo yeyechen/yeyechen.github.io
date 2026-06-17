@@ -1,0 +1,11 @@
+- name: University of Hong Kong
+  logo: /assets/images/badges/hku.png
+  position: Research Assistant
+  date: May 2025 - present
+  description: Supervised by <a href="https://sites.google.com/site/alanpaulkwan/" target="_blank">Prof. Alan Kwan</a>
+
+- name: Maicrotrader
+  logo: /assets/images/badges/MT_LOGOMARK_BLUE_.svg
+  position: Developer
+  date: Dec 2025 - present
+  description: Maicrotrader is an agent running propietary trading strategies on DEXs. <br>I built the automated execution system & helped with backtesting. <br> My code has processed over $3M in trading volume.

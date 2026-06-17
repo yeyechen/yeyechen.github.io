@@ -1,0 +1,23 @@
+- name: University of Hong Kong
+  logo: /assets/images/badges/hku.png
+  position: MFin. in Financial Technology
+  date: Sep 2024 – Nov 2026
+  description: Postgraduate
+
+- name: Wenzhou-Kean University
+  logo: /assets/images/badges/WKU.png
+  position: Visiting Student
+  date: Sep 2021 – Jun 2022
+  description: During the pandemic, I spent a year living & studying at the campus.
+
+- name: Imperial College London
+  logo: /assets/images/badges/ic_logo.png
+  position: MEng. in Computing
+  date: Sep 2019 – Jun 2023
+  description: Undergraduate
+
+- name: DLD College London
+  logo: /assets/images/badges/dld-logo.png
+  position: A-Levels
+  date: Jan 2018 – Jun 2019
+  description: I was awarded my first ever scholarship.
